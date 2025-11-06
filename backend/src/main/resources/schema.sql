@@ -1,0 +1,3 @@
+-- You can pre-create database if needed:
+-- CREATE DATABASE smartlearn;
+-- USE smartlearn;

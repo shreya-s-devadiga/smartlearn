@@ -1,0 +1,8 @@
+/* Minimal styles; Bootstrap handles most design */
+body { background: #f7fff7; }
+.hero {
+  background: linear-gradient(135deg,#4ECDC4,#9B5DE5);
+  color:white; border-radius:1rem; padding:3rem
+}
+.card-hover:hover { transform: translateY(-6px); transition: .2s; }
+.badge-glow { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }

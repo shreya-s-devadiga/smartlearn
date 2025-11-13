@@ -1,0 +1,48 @@
+/* Global line-height controlled via CSS var */
+:root {
+  --acc-line-height: 1.6;
+}
+
+/* Apply line-height to typical text containers */
+body, .acc-preview, p, li {
+  line-height: var(--acc-line-height);
+}
+
+/* Dyslexia-friendly: use a more rounded, friendly font + slight spacing */
+.dyslexia-font {
+  font-family: "Comic Sans MS", "Verdana", "Arial", sans-serif !important;
+  letter-spacing: 0.4px;
+}
+
+/* High contrast across the app */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.high-contrast .card {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}
+.high-contrast .btn,
+.high-contrast .navbar,
+.high-contrast .nav-link,
+.high-contrast .form-check-label {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* Focus mode: reduce motion & visual noise */
+.focus-mode * {
+  transition: none !important;
+  animation: none !important;
+}
+.focus-mode .card,
+.focus-mode .shadow,
+.focus-mode .card-hover {
+  box-shadow: none !important;
+}
+.focus-mode img,
+.focus-mode video {
+  filter: grayscale(20%);
+}

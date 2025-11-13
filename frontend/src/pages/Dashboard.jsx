@@ -9,10 +9,10 @@ export default function Dashboard(){
 
       <div className="row g-3">
         {[
-          {title:'Interactive Lessons', path:'/dyslexia', desc:'Engaging visual and audio-based learning.', icon:'📚'},
+          {title:'Interactive Lessons', path:'/learning-modes', desc:'Engaging visual and audio-based learning.', icon:'📚'},
           {title:'Emotion Tracker', path:'/emotion', desc:'Check how you feel and take calming breaks.', icon:'😊'},
           {title:'Rewards & Challenges', path:'/rewards', desc:'Earn stars and unlock fun badges!', icon:'🏆'},
-          {title:'Accessibility', path:'#', desc:'Adjust colors, fonts, and focus modes.', icon:'♿'}
+          {title:'Accessibility', path:'/Accessibility', desc:'Adjust colors, fonts, and focus modes.', icon:'♿'}
         ].map((c,i)=>(
           <div key={i} className="col-md-6 col-lg-3">
             <a href={c.path} className="text-decoration-none text-dark">

@@ -1,40 +1,66 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
-export default function Home(){
-  const nav = useNavigate()
+export default function Home() {
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("user") !== null;
+
+  const goToLearning = () => {
+    if (isLoggedIn) navigate("/dashboard");
+    else navigate("/login");
+  };
+
   return (
-    <div className="hero text-center">
-      <h1 className="display-5 fw-bold">Learning Made Joyful for Every Child</h1>
-      <p className="lead">Personalized lessons, emotional support, and fun rewards in one place.</p>
-      <button className="btn btn-warning btn-lg" onClick={()=>nav('/login')}>Get Started</button>
+    <div className="home-wrapper">
 
-      <div className="row mt-5">
-        <div className="col-md-4">
-          <div className="card card-hover">
-            <div className="card-body">
-              <h5 className="card-title">🧩 Dyslexia Aid</h5>
-              <p className="card-text">Letter & word recognition games with audio support.</p>
-            </div>
-          </div>
+      {/* HERO SECTION */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>
+            Empower Learning with <span className="highlight">SmartLearn</span>
+          </h1>
+          <p>
+            Personalized and inclusive learning support designed to help children grow confidently — one step at a time.
+          </p>
+
+          <button className="primary-btn" onClick={goToLearning}>
+            {isLoggedIn ? "Go to Dashboard" : "Get Started"}
+          </button>
         </div>
-        <div className="col-md-4">
-          <div className="card card-hover">
-            <div className="card-body">
-              <h5 className="card-title">⚡ ADHD Focus</h5>
-              <p className="card-text">Short quizzes, focus timers, and movement breaks.</p>
-            </div>
-          </div>
+
+        <div className="hero-illustration">
+          <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Learning Illustration" />
         </div>
-        <div className="col-md-4">
-          <div className="card card-hover">
-            <div className="card-body">
-              <h5 className="card-title">🤖 Autism-Friendly</h5>
-              <p className="card-text">Visual storyboards and emotion recognition games.</p>
-            </div>
+      </section>
+
+
+      {/* FEATURES SECTION */}
+      <section className="features">
+        <h2>Learning Modes</h2>
+
+        <div className="feature-grid">
+
+          <div className="feature-card" onClick={() => navigate("/dyslexia")}>
+            <i className="fas fa-text-height"></i>
+            <h3>Dyslexia Learning</h3>
+            <p>Interactive phonics, letter recognition, confidence-building exercises.</p>
           </div>
+
+          <div className="feature-card" onClick={() => navigate("/emotion")}>
+            <i className="fas fa-smile"></i>
+            <h3>Emotional Support</h3>
+            <p>Help learners express, understand, and regulate emotions positively.</p>
+          </div>
+
+          <div className="feature-card" onClick={() => navigate("/rewards")}>
+            <i className="fas fa-star"></i>
+            <h3>Rewards & Progress</h3>
+            <p>Track learning progress and celebrate achievements with rewards!</p>
+          </div>
+
         </div>
-      </div>
+      </section>
+
     </div>
-  )
+  );
 }

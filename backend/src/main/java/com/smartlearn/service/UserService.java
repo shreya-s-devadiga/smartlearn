@@ -9,24 +9,41 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
-  private final UserRepository repo;
-  public UserService(UserRepository repo){ this.repo = repo; }
 
+  private final UserRepository repo;
+
+  public UserService(UserRepository repo) {
+    this.repo = repo;
+  }
+
+  // ✅ REGISTER USER
   @Transactional
-  public User register(RegisterRequest req){
-    if(repo.existsByUsername(req.getUsername())) throw new RuntimeException("Username taken");
-    if(repo.existsByEmail(req.getEmail())) throw new RuntimeException("Email taken");
+  public User register(RegisterRequest req) {
+    if (repo.existsByUsername(req.getUsername()))
+      throw new RuntimeException("Username already taken");
+
+    if (repo.existsByEmail(req.getEmail()))
+      throw new RuntimeException("Email already in use");
+
     User u = new User();
     u.setFullname(req.getFullname());
     u.setEmail(req.getEmail());
     u.setUsername(req.getUsername());
     u.setPasswordHash(BCrypt.hashpw(req.getPassword(), BCrypt.gensalt()));
+    u.setRole(req.getRole() != null ? req.getRole() : "USER");
+
     return repo.save(u);
   }
 
-  public User login(String username, String password){
-    return repo.findByUsername(username)
-      .filter(u -> BCrypt.checkpw(password, u.getPasswordHash()))
-      .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+  // ✅ LOGIN USER (checks username + password)
+  public User login(String username, String password) {
+    User user = repo.findByUsername(username)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+
+    if (!BCrypt.checkpw(password, user.getPasswordHash())) {
+      throw new RuntimeException("Invalid credentials");
+    }
+
+    return user;
   }
 }

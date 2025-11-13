@@ -26,4 +26,7 @@ public class User {
 
   @NotBlank
   private String passwordHash;
+
+  @NotBlank
+  private String role = "USER";   // ✅ Add this line
 }

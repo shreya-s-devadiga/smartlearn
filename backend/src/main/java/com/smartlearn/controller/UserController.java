@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
   private final UserService service;
   public UserController(UserService service){ this.service = service; }
 
@@ -23,17 +24,22 @@ public class UserController {
     }
   }
 
-  @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody LoginRequest req){
-    try{
-      User u = service.login(req.getUsername(), req.getPassword());
-      return ResponseEntity.ok(new PublicUser(u));
-    }catch(Exception e){
-      return ResponseEntity.status(401).body("Invalid credentials");
-    }
+@PostMapping("/login")
+public ResponseEntity<?> login(@RequestBody LoginRequest req){
+  try{
+    User u = service.login(req.getUsername(), req.getPassword());
+    return ResponseEntity.ok(new PublicUser(u));
+  }catch(Exception e){
+    return ResponseEntity.status(401).body("Invalid credentials");
   }
+}
 
-  record PublicUser(Long id, String fullname, String email, String username){
-    PublicUser(User u){ this(u.getId(), u.getFullname(), u.getEmail(), u.getUsername()); }
+
+  // ✅ Updated to include ROLE field
+  record PublicUser(Long id, String fullname, String email, String username, String role){
+  PublicUser(User u){
+    this(u.getId(), u.getFullname(), u.getEmail(), u.getUsername(), u.getRole());
   }
+}
+
 }

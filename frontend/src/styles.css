@@ -6,3 +6,68 @@ body { background: #f7fff7; }
 }
 .card-hover:hover { transform: translateY(-6px); transition: .2s; }
 .badge-glow { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+
+.badge-glow {
+  box-shadow: 0 0 12px rgba(255, 223, 0, 0.7);
+  transition: 0.3s;
+}
+.badge-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 223, 0, 1);
+}
+
+
+.dashboard-card {
+  background: linear-gradient(135deg, #ffffff, #f2f6ff);
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border-radius: 50%;
+}
+
+body {
+  background: #F4FBFF;
+  font-family: "Inter", sans-serif;
+}
+
+.card, .shadow-sm, .rounded {
+  border-radius: 18px !important;
+}
+
+.learning-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  border-radius: 18px;
+  border: 2px solid transparent;
+}
+
+.learning-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 120, 255, 0.25);
+  border-color: #5da9ff;
+}
+
+/* Softer glow for game cards */
+.game-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border-radius: 18px;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(255, 200, 70, 0.25);
+}
+
+
